@@ -33,6 +33,13 @@ class JokesListViewController: UIViewController {
         super.viewDidAppear(animated)
         getJokes()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let textViewController = segue.destinationViewController
+        if textViewController is TextViewController {
+           (textViewController as! TextViewController).attributedText = sender as? NSAttributedString
+        }
+    }
 }
 
 extension JokesListViewController: UITableViewDataSource {
@@ -54,10 +61,15 @@ extension JokesListViewController: UITableViewDataSource {
         let aJoke = jokes[index.row]
         return aJoke
     }
+    
+    
 }
 
 extension JokesListViewController: UITableViewDelegate {
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let joke = jokeAtIndex(indexPath)
+        performSegueWithIdentifier("Show Joke Detailed", sender: joke.htmlText.parseFromHTML())
+    }
 }
 
 //MARK: - REST -
