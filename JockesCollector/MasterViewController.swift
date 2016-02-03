@@ -34,5 +34,36 @@ class MasterViewController: RESideMenu {
         print(not)
         
         hideMenuViewController()
+        showJokesForMenuItem(not.object as! String)
+    }
+    
+    func showJokesForMenuItem(name:String){
+        let site: String?
+        let siteName : String?
+        
+        switch(name){
+            case "It-happense":
+                site = "ithappense.me"
+                siteName = "ithappens"
+            
+            case "Bash":
+                site = "bash.im"
+                siteName = "bash"
+            
+            default:
+                return
+        }
+        
+        //создадим в сторибоард центральный вьюконтроллер и приведем его к типу NavigationController
+        //т.к. мы знаем, что он такого типа
+        let navController = self.storyboard?.instantiateViewControllerWithIdentifier(self.contentViewStoryboardID) as! UINavigationController
+        
+        //еще мы знаем заранее, что у навигейшн контроллера первым идет наш
+        //любимый шуточный контроллер
+        let jokeViewController = navController.viewControllers.first as! JokesListViewController
+        jokeViewController.site = site!
+        jokeViewController.siteName = siteName!
+        
+        setContentViewController(navController, animated: true)
     }
 }
