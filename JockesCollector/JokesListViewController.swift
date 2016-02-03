@@ -10,12 +10,18 @@ import UIKit
 import MBProgressHUD
 import Alamofire
 
+/*"site" : "bash.im",
+"name" : "bash"*/
+
 class JokesListViewController: UIViewController {
   
     let APIUrl = "http://www.umori.li/api/get"
     @IBOutlet weak var tableView: UITableView!
 
     var jokes:[Joke] = [Joke]()
+    
+    var site:String = "bash.im"
+    var siteName:String = "bash"
     
     override func viewDidLoad() {
         
@@ -91,11 +97,11 @@ extension JokesListViewController {
         showIsBusy(true, animated: true)
         
         // http://www.umori.li/api/get?site=bash.im&name=bash&num=2
-        let params = ["site" : "bash.im",
-                      "name" : "bash",
+        let params = ["site" : site,
+                      "name" : siteName,
                       "num"  : 100]
         
-        Alamofire.request(.GET, APIUrl, parameters: params, encoding: .URL, headers: nil)
+        Alamofire.request(.GET, APIUrl, parameters: params as? [String : AnyObject], encoding: .URL, headers: nil)
         .responseJSON { (responseJSON) -> Void in
             
             self.showIsBusy(false, animated: true)
