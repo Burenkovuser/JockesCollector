@@ -40,6 +40,18 @@ class JokesListViewController: UIViewController {
            (textViewController as! TextViewController).attributedText = sender as? NSAttributedString
         }
     }
+    
+    //MARK: - UI Events Handling
+    
+    @IBAction func showLeftMenu(sender: AnyObject) {
+        self.sideMenuViewController.presentLeftMenuViewController()
+    }
+    @IBAction func showRightMenu(sender: AnyObject) {
+        self.sideMenuViewController.presentRightMenuViewController()
+    }
+    @IBAction func refreshButtonPressed(sender: AnyObject) {
+        getJokes()
+    }
 }
 
 extension JokesListViewController: UITableViewDataSource {

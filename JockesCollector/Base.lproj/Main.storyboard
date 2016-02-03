@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Master View Controller-->
@@ -23,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suv-Gq-aDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-466" y="-243"/>
+            <point key="canvasLocation" x="-363" y="-264"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="UFc-8k-VVL">
@@ -153,7 +154,28 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yf8-EL-ZrK" secondAttribute="bottom" id="u6r-B1-4jn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AUi-8v-d6h"/>
+                    <navigationItem key="navigationItem" id="AUi-8v-d6h">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="MRI-pG-99V">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <action selector="showLeftMenu:" destination="BYZ-38-t0r" id="W2f-gC-Fb6"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="camera" id="cpg-yM-ypX">
+                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <action selector="showRightMenu:" destination="BYZ-38-t0r" id="OM4-kA-X2c"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="XNZ-Xj-IYk">
+                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="BYZ-38-t0r" id="u2Z-cf-ytm"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="yf8-EL-ZrK" id="slj-8W-8vA"/>
