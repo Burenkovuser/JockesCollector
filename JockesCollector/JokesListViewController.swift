@@ -44,7 +44,7 @@ extension JokesListViewController: UITableViewDataSource {
         let aJoke = jokeAtIndex(indexPath)
         let cell  = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = aJoke.htmlText
+        cell.textLabel?.attributedText = aJoke.htmlText.parseFromHTML()
         cell.detailTextLabel?.text = aJoke.sourceSite
         
         return cell
@@ -105,3 +105,45 @@ extension UIViewController {
         MBProgressHUD.hideHUDForView(view, animated: animated)
     }
 }
+
+
+extension String {
+    func parseFromHTML()->NSAttributedString? {
+        
+        guard let data = self.dataUsingEncoding(NSUnicodeStringEncoding) else {
+            return nil
+        }
+        
+        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType]
+        
+        let parsedHTML = try? NSAttributedString(data: data,
+            options: options,
+            documentAttributes: nil)
+        
+        return parsedHTML
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
